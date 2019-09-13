@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-export default class Info extends Component {
+export default class ShareManage extends Component {
     constructor () {
         super()
     }
 
     render () {
         return (
-            <div>商品信息管理</div>
+            <div>分享管理</div>
         )
     }
 }
