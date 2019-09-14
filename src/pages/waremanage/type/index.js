@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 export default class Type extends Component {
-    constructor () {
-        super()
-    }
+    // constructor () {
+    //     super()
+    // }
 
     render () {
         return (

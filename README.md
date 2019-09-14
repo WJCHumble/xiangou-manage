@@ -42,6 +42,10 @@
 
       export default App;
 
+## 问题汇总
+
+    9-14 history的push方法路由变化，页面不会变化  暂时用Link标签
+
 
     
     

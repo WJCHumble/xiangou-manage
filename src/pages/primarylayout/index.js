@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
 import { 
   Layout, 
-  Breadcrumb, 
   Avatar,
   Drawer
 } from 'antd'
 import './index.less'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Header, Footer} = Layout
 
 
 export default class PrimaryLayout extends Component {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 export default class AuthorityManage extends Component {
-    constructor () {
-        super()
-    }
+    // constructor () {
+    //     super()
+    // }
 
     render () {
         return (
