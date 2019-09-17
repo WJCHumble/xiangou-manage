@@ -72,8 +72,6 @@ export default class SideBar extends Component {
         }))
     }
 
-
-
     onCollapse = collapsed => {
         this.setState({ collapsed })
     }
@@ -92,7 +90,7 @@ export default class SideBar extends Component {
         this.setState({
             openKeys: openKey
         })
-        console.log(this.state.openKeys)
+        // console.log(this.state.openKeys)
     }
 
     render () {

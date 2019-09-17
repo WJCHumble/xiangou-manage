@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
+import MDrawer from '../../components/MDrawer'
 import { 
   Layout, 
   Avatar,
@@ -12,20 +13,19 @@ const { Header, Footer} = Layout
 
 
 export default class PrimaryLayout extends Component {
-    state = {
-      visible: false
+
+    constructor () {
+      super()
+
+      this.oMDrawer = createRef()
     }
 
     showDrawer = () => {
-      this.setState({
-        visible: true
-      })
+      this.oMDrawer.current.showDrawer()
     }
 
-    onClose = () => {
-      this.setState({
-        visible: false
-      })
+    state = {
+      visible: false
     }
 
     render() {
@@ -50,18 +50,7 @@ export default class PrimaryLayout extends Component {
           </Layout>
         </Layout>
         {/* 抽屉 */}
-        <Drawer
-            title="用户信息"
-            width="360"
-            placement="right"
-            closable={false}
-            onClose={this.onClose}
-            visible={this.state.visible}
-          >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-          </Drawer>
+        <MDrawer ref={ this.oMDrawer }/> 
         </div>
       );
     }
