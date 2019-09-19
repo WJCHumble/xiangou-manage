@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
+import MyForm from '../MyForm'
 import {
-    Drawer,
-    Form, 
-    Icon, 
-    Input, 
-    Button, 
-    Checkbox
+    Drawer
 } from 'antd'
 
-
-
-export default class MDrawer extends Component {
+export default class MyDrawer extends Component {
     constructor (props) {
         super(props)
 
@@ -18,6 +12,7 @@ export default class MDrawer extends Component {
             visible: false
         }        
     }
+
 
     showDrawer = () => {
         this.setState({
@@ -32,6 +27,7 @@ export default class MDrawer extends Component {
     }        
 
     render () {
+
         return (
             <div>
                 <Drawer
@@ -42,9 +38,7 @@ export default class MDrawer extends Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                  <MyForm/> 
                 </Drawer>
             </div>
         )

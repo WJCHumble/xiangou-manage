@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
-import MDrawer from '../../components/MDrawer'
+import MyDrawer from '../../components/MDrawer'
 import { 
   Layout, 
   Avatar,
@@ -22,6 +22,7 @@ export default class PrimaryLayout extends Component {
 
     showDrawer = () => {
       this.oMDrawer.current.showDrawer()
+      // console.log(this.oMDrawer)
     }
 
     state = {
@@ -50,7 +51,7 @@ export default class PrimaryLayout extends Component {
           </Layout>
         </Layout>
         {/* 抽屉 */}
-        <MDrawer ref={ this.oMDrawer }/> 
+        <MyDrawer ref={ this.oMDrawer }/> 
         </div>
       );
     }
