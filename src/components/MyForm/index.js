@@ -6,6 +6,7 @@ import {
     Button,
     Checkbox
 } from 'antd'
+import './index.less'
 
 class MForm extends Component {
 

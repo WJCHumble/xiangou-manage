@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-import { Layout, Menu, Icon } from 'antd'
+import { 
+    Layout, 
+    Menu, 
+    Icon,
+    Avatar
+} from 'antd'
 import './index.less'
 
 const { Sider } = Layout
@@ -9,7 +14,7 @@ const { SubMenu } = Menu
 
 const history = createBrowserHistory()
 
-export default class SideBar extends Component {
+class SideBar extends Component {
     constructor (props) {
         super(props)
 
@@ -63,13 +68,16 @@ export default class SideBar extends Component {
         const arr = history.location.pathname.split('/')
         const defaultOpenKeys = arr[1] ? [`/${arr[1]}`] : this.state.defaultOpenKeys
         const defaultSelectedKeys = arr[2] ? [`${history.location.pathname}`] : this.state.defaultSelectedKeys
-        console.log(defaultSelectedKeys)
+        // console.log(defaultSelectedKeys)
         
         this.setState((state, props) => ({
             defaultOpenKeys: defaultOpenKeys,
             openKeys: defaultOpenKeys,
             defaultSelectedKeys: defaultSelectedKeys
         }))
+        
+        // history.push(defaultSelectedKeys[0])
+        this.props.history.push(defaultSelectedKeys[0])
     }
 
     onCollapse = collapsed => {
@@ -97,7 +105,8 @@ export default class SideBar extends Component {
         return (
             <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                 <div className="logo">
-                    闲购-后端管理系统
+                    <Avatar src="https://img-blog.csdnimg.cn/20190919235232228.png" size="large"/>
+                    &nbsp;&nbsp;后端管理系统
                 </div>
                 <Menu 
                     theme="dark" 
@@ -147,3 +156,5 @@ export default class SideBar extends Component {
         )
     }
 }
+
+export default withRouter(SideBar)

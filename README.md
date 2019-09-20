@@ -44,7 +44,14 @@
 
 ## 问题汇总
 
-    9-14 history的push方法路由变化，页面不会变化  暂时用Link标签
+### history的push方法路由变化，页面不会变化  暂时用Link标签
+
+    解决：react-router4.0已经不支持通过browserHistory进行push/replace操作
+        react-router4.0提供了withRouter高阶组件
+        可以在组件中通过 this.props.history.push(path)
+                        export default withRouter(组件)
+        实现路由组件的跳转
+
 
 
     

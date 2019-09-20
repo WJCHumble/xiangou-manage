@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import MyForm from '../MyForm'
 import {
-    Drawer
+    Drawer,
+    Avatar
 } from 'antd'
+import './index.less'
 
 export default class MyDrawer extends Component {
     constructor (props) {
@@ -38,6 +40,9 @@ export default class MyDrawer extends Component {
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
+                    {/* <div className="avatar"> */}
+                    <Avatar size={64} src="https://img-blog.csdnimg.cn/20190913132853727.jpg"/>
+                    {/* </div> */}
                   <MyForm/> 
                 </Drawer>
             </div>
