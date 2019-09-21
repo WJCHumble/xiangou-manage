@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
+import MyDrawer from '../../../components/MyDrawer'
 import {
     Table, 
     Divider, 
@@ -13,13 +14,21 @@ import {
 const Option = Select
 
 export default class Admin extends Component {
-    // constructor () {
-    //     super()
-    // }
-    //定义列
 
+    constructor (props) {
+        super(props)
+
+        this.oMyDrawer = createRef()
+    }
+    
+    // 定义列
     handleChange = value => {
         console.log(`selected ${value}`)
+    }
+
+    //显示隐藏抽屉
+    toggleDrawer = () => {
+        this.oMyDrawer.current.showDrawer()
     }
 
     render () {
@@ -52,32 +61,30 @@ export default class Admin extends Component {
             },
             {
                 title: '账号状态',
-                key: 'tags',
-                dataIndex: 'tags',
-                render: tags => (
-                    <span>
-                        {tags.map(tag => {
+                key: 'tag',
+                dataIndex: 'tag',
+                render: tag => {
                             let color = 'green'
                             if (tag === '禁用') {
                                 color = 'red'
                             }
                             return (
-                                <Tag color={color} key={tag}>
-                                    {tag.toUpperCase()}
+                            <span>
+                                <Tag color={color}>
+                                    {tag}
                                 </Tag>
-                            );
-                        })}
-                    </span>
-                ),
+                            </span>
+                        );
+                    }
             },
             {
                 title: '操作',
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <Button size="small" type="link">修改</Button>
+                        <Button size="small" type="primary" ghost onClick={this.toggleDrawer}>修改</Button>
                         <Divider type="vertical" />
-                        <Button size="small" type="link">删除</Button>
+                        <Button size="small" type="danger" ghost>删除</Button>
                     </span>
                 ),
             },
@@ -92,7 +99,7 @@ export default class Admin extends Component {
                 address: '111111',
                 role: '分享管理员',
                 lastLoginTime: '1111',
-                tags: ['正常'],
+                tag: '正常',
             },
             {
                 key: '2',
@@ -101,7 +108,7 @@ export default class Admin extends Component {
                 address: 'London No. 1 Lake Park',
                 role: '分享管理员',
                 lastLoginTime: '1111',
-                tags: ['正常'],
+                tag: '正常',
             },
             {
                 key: '3',
@@ -110,16 +117,16 @@ export default class Admin extends Component {
                 address: 'Sidney No. 1 Lake Park',
                 role: '超级管理员',
                 lastLoginTime: '1111',
-                tags: ['禁用'],
+                tag: '禁用',
             },
             {
-                key: '3',
+                key: '4',
                 name: 'Tom',
                 age: 50,
                 address: 'Amazing life',
                 role: '超级管理员',
                 lastLoginTime: '1111',
-                tags: ['禁用'],
+                tag: '禁用',
             },
         ]
 
@@ -152,6 +159,8 @@ export default class Admin extends Component {
                 <Button type="primary">新增管理员</Button>
                 &nbsp;&nbsp;&nbsp;
                 <Button type="primary">同步管理员</Button>
+                <MyDrawer ref={this.oMyDrawer} title="John Brown">
+                </MyDrawer>
             </div>
         )
     }

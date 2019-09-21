@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
-import MyDrawer from '../../components/MDrawer'
+import MyDrawer from '../../components/MyDrawer'
+import MyForm from '../../components/MyForm'
 import { 
   Layout, 
   Avatar,
@@ -36,11 +37,11 @@ export default class PrimaryLayout extends Component {
       this.state = {
         visible: false
       }
-      this.oMDrawer = createRef()
+      this.oMyDrawer = createRef()
     }
 
     showDrawer = () => {
-      this.oMDrawer.current.showDrawer()
+      this.oMyDrawer.current.showDrawer()
     }
 
     render() {
@@ -65,7 +66,12 @@ export default class PrimaryLayout extends Component {
             </Layout>
           </Layout>
           {/* 抽屉 */}
-          <MyDrawer ref={ this.oMDrawer }/> 
+          <MyDrawer ref={ this.oMyDrawer } title="用户信息"> 
+            {/* <div className="avatar"> */}
+            <Avatar size={64} src="https://img-blog.csdnimg.cn/20190913132853727.jpg" />
+            {/* </div> */}
+            <MyForm /> 
+          </MyDrawer> 
         </div>
       );
     }

@@ -42,6 +42,14 @@
 
       export default App;
 
+#### 复用MyDrawer组件
+
+    通过使用props实现
+    即：
+        <MyDrawer>
+            {this.props.children} 
+        </MyDrawer>
+
 ## 问题汇总
 
 ### history的push方法路由变化，页面不会变化  暂时用Link标签

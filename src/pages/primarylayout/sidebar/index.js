@@ -101,12 +101,19 @@ class SideBar extends Component {
         // console.log(this.state.openKeys)
     }
 
+    // 路由重定向
+    onRedirect = () => {
+        this.props.history.replace('/usermanage/admin')
+    }
+
     render () {
         return (
             <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-                <div className="logo">
+                <div className="logo" onClick={this.onRedirect}>
                     <Avatar src="https://img-blog.csdnimg.cn/20190919235232228.png" size="large"/>
-                    &nbsp;&nbsp;后端管理系统
+                    <span>
+                        &nbsp;&nbsp;后端管理系统
+                    </span>
                 </div>
                 <Menu 
                     theme="dark" 

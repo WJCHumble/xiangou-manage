@@ -33,17 +33,14 @@ export default class MyDrawer extends Component {
         return (
             <div>
                 <Drawer
-                    title="用户信息"
+                    title={this.props.title}
                     width="340"
                     placement="right"
                     closable={false}
                     onClose={this.onClose}
                     visible={this.state.visible}
                 >
-                    {/* <div className="avatar"> */}
-                    <Avatar size={64} src="https://img-blog.csdnimg.cn/20190913132853727.jpg"/>
-                    {/* </div> */}
-                  <MyForm/> 
+                    {this.props.children}
                 </Drawer>
             </div>
         )
