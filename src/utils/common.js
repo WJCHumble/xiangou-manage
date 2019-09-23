@@ -1,11 +1,10 @@
 import {
-    Modal,
-    Button
+    Modal
 } from 'antd'
-/**
- * 错误提示框
- */
 
+/**
+ * 删除记录对话框
+ */
  const { confirm } = Modal
 
  export default function showDeleteConfirm() {
@@ -23,3 +22,21 @@ import {
         },
     })
  }
+
+ /**
+  * 退出系统对话框
+  */
+export function exitConfirm() {
+    confirm({
+        title: '提示',
+        content: '确定退出吗？',
+        okText: '确认',
+        cancelText: '取消',
+        onCancel: () => {
+            console.log(111)
+        },
+        onOk: () => {
+            console.log(222)
+        }
+    })
+}

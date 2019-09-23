@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { exitConfirm } from '../../utils/common'
 import {
     Form,
     Select,
@@ -21,10 +22,10 @@ class MForm extends Component {
     };
 
     handleSelectChange = value => {
-        console.log(value);
-        this.props.form.setFieldsValue({
-            note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
-        });
+        // console.log(value);
+        // this.props.form.setFieldsValue({
+        //     note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
+        // });
     };
 
     render () {
@@ -40,7 +41,7 @@ class MForm extends Component {
                     </Form.Item>
                     <Form.Item label="账号：">
                         {getFieldDecorator('account', {
-                            initialValue: 201652275133 
+                            initialValue: 20112378617 
                         })(<Input/>)}
                     </Form.Item>
                     <Form.Item label="密码：">
@@ -55,7 +56,7 @@ class MForm extends Component {
                     </Form.Item>
                     <Form.Item label="手机号：">
                         {getFieldDecorator('phone', {
-                            initialValue: '18157361620'
+                            initialValue: '10086'
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item label="角色：">
@@ -75,8 +76,8 @@ class MForm extends Component {
                             确定
                         </Button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Button htmlType="reset">
-                            取消
+                        <Button onClick={() => exitConfirm()}>
+                            退出
                         </Button>
                     </Form.Item>
                 </Form>

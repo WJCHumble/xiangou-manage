@@ -3,6 +3,7 @@ import SideBar from './sidebar'
 import RightContent from './rightcontent'
 import MyDrawer from '../../components/MyDrawer'
 import MyForm from '../../components/MyForm'
+import { exitConfirm } from '../../utils/common'
 import { 
   Layout, 
   Avatar,
@@ -13,21 +14,7 @@ import './index.less'
 
 const { Header, Footer} = Layout
 
-// 退出提示登录框
-function confirm() {
-  Modal.confirm({
-    title: '提示',
-    content: '确定退出吗？',
-    okText: '确认',
-    cancelText: '取消',
-    onCancel: () => {
-      console.log(111)
-    },
-    onOk: () => {
-      console.log(222)
-    }
-  })
-}
+
 
 export default class PrimaryLayout extends Component {
 
@@ -56,7 +43,7 @@ export default class PrimaryLayout extends Component {
                 <div className="avatar-area">
                     <Avatar src='https://img-blog.csdnimg.cn/20190913132853727.jpg'/>
                     <span onClick={ this.showDrawer } className="user-name">WJCHumble</span>|
-                    <span className="exit" onClick={ confirm }>退出</span>
+                    <span className="exit" onClick={() => exitConfirm()}>退出</span>
                 </div>
               </Header>
               {/* 右侧内容区 */}
