@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Empty } from 'antd'
 
 export default class User extends Component {
     // constructor () {
@@ -7,7 +8,9 @@ export default class User extends Component {
 
     render () {
         return (
-            <div>我是普通用户</div>
+            <div>
+                <Empty description="暂无数据" />>
+            </div>
         )
     }
 }

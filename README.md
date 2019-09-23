@@ -50,6 +50,10 @@
             {this.props.children} 
         </MyDrawer>
 
+#### 按钮onClick绑定事件
+
+    <Button onClick={() => this.eventAction(param)}></Button>
+
 ## 问题汇总
 
 ### history的push方法路由变化，页面不会变化  暂时用Link标签

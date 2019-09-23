@@ -34,7 +34,7 @@ export default class MyDrawer extends Component {
             <div>
                 <Drawer
                     title={this.props.title}
-                    width="340"
+                    width="400"
                     placement="right"
                     closable={false}
                     onClose={this.onClose}

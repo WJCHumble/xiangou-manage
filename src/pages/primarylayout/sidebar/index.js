@@ -29,7 +29,6 @@ class SideBar extends Component {
                     menuitems: [
                         {path: '/admin', name: '管理员'},
                         {path: '/user', name: '普通用户'},
-                        {path: '/authenticateduser', name: '授权用户'},
                     ]
                 },
                 {
@@ -55,7 +54,7 @@ class SideBar extends Component {
             ],
             menus: [
                 {type: 'menu', path: '/sharemanage', icon: 'share-alt', name: '分享管理'},
-                {type: 'menu', path: '/receivecustomermanage', icon: 'usergroup-add', name: '获客管理'},
+                // {type: 'menu', path: '/receivecustomermanage', icon: 'usergroup-add', name: '获客管理'},
                 {type: 'menu', path: '/authoritymanage', icon: 'control', name: '权限管理'},
             ],
             openKeys: ["/usermanage"],  //当前选中的SubMenu
@@ -98,7 +97,6 @@ class SideBar extends Component {
         this.setState({
             openKeys: openKey
         })
-        // console.log(this.state.openKeys)
     }
 
     // 路由重定向

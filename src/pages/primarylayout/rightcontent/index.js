@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import * as UserManage from '../../usermanage'
 import * as WareManage from '../../waremanage'
 import * as AuthenticationManage from '../../authenticationmanage'
-import AuthorityManage from '../../authoritymanage'
 import ShareManage from '../../sharemanage'
 import { Layout } from 'antd'
 
@@ -29,7 +28,6 @@ export default class RightContent extends Component {
                         <Route exact path="/authenticationmanage/student" component={ AuthenticationManage.Student }/>
                         <Route exact path="/waremanage/type" component={ WareManage.Type }/>
                         <Route exact path="/waremanage/info" component={ WareManage.Info }/>
-                        <Route exact path="/authoritymanage" component={ AuthorityManage }/>
                         <Route exact path="/sharemanage" component={ ShareManage }/>
                     </div>
                 </Content>

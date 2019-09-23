@@ -1,5 +1,7 @@
 import React, { Component, createRef } from 'react'
 import MyDrawer from '../../../components/MyDrawer'
+import showDeleteConfirm from '../../../utils/common'
+import LazyLoad from '../../../components/LazyLoad'
 import {
     Table, 
     Divider, 
@@ -19,6 +21,11 @@ export default class Admin extends Component {
         super(props)
 
         this.oMyDrawer = createRef()
+        this.oLazyLoad = createRef()
+
+        this.state = {
+            admin: {}
+        }
     }
     
     // 定义列
@@ -27,8 +34,20 @@ export default class Admin extends Component {
     }
 
     //显示隐藏抽屉
-    toggleDrawer = () => {
+    toggleDrawer = record => {
+        // console.log(record)
+        this.setState({
+            admin: record
+        })
         this.oMyDrawer.current.showDrawer()
+    }
+
+    //显示隐藏懒加载
+    toggleLazyLoad = () => {
+        this.oLazyLoad.current.toggleSpinning()
+        setTimeout(() => {
+            this.oLazyLoad.current.toggleSpinning()
+        }, 2000)
     }
 
     render () {
@@ -82,9 +101,9 @@ export default class Admin extends Component {
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <Button size="small" type="primary" ghost onClick={this.toggleDrawer}>修改</Button>
+                        <Button size="small" type="primary" ghost onClick={() => this.toggleDrawer(record)}>修改</Button>
                         <Divider type="vertical" />
-                        <Button size="small" type="danger" ghost>删除</Button>
+                        <Button size="small" type="danger" ghost onClick={() => showDeleteConfirm()}>删除</Button>
                     </span>
                 ),
             },
@@ -130,37 +149,40 @@ export default class Admin extends Component {
             },
         ]
 
-
         return (
             <div>
-                {/* 条件输入框 */}
-                <div className="searchControl">
-                    <Row gutter={24}>
-                        <Col span={4}>
-                            <Input placeholder="请输入姓名"/>       
-                        </Col>
-                        <Col span={4}>
-                            <Input placeholder="请输入账号" />
-                        </Col>
-                        <Col span={4}>
-                            <Select defaultValue="ordinaryManager" style={{ width: 180 }} onChange={ this.handleChange }>
-                                <Option value="superManager">超级管理员</Option>
-                                <Option value="shareManager">分享管理员</Option>
-                                <Option value="ordinaryManager">普通管理员</Option>
-                            </Select>
-                        </Col>
-                        <Col span={12}>
-                            <Button type="primary">确定</Button>
-                        </Col>
-                    </Row>
-                </div>
-                <br/><br/>
-                <Table bordered={ true } columns={columns} dataSource={data}/>
-                <Button type="primary">新增管理员</Button>
-                &nbsp;&nbsp;&nbsp;
-                <Button type="primary">同步管理员</Button>
-                <MyDrawer ref={this.oMyDrawer} title="John Brown">
-                </MyDrawer>
+                <LazyLoad ref={this.oLazyLoad}>
+                    {/* 条件输入框 */}
+                    <div className="searchControl">
+                        <Row gutter={24}>
+                            <Col span={4}>
+                                <Input placeholder="请输入姓名"/>       
+                            </Col>
+                            <Col span={4}>
+                                <Input placeholder="请输入账号" />
+                            </Col>
+                            <Col span={4}>
+                                <Select defaultValue="ordinaryManager" style={{ width: 180 }} onChange={ this.handleChange }>
+                                    <Option value="superManager">超级管理员</Option>
+                                    <Option value="shareManager">分享管理员</Option>
+                                    <Option value="ordinaryManager">普通管理员</Option>
+                                </Select>
+                            </Col>
+                            <Col span={12}>
+                                <Button type="primary">筛选</Button>
+                                &nbsp;&nbsp;&nbsp;
+                                <Button>重置</Button>
+                            </Col>
+                        </Row>
+                    </div>
+                    <br/><br/>
+                    <Table bordered={ true } columns={columns} dataSource={data}/>
+                    <Button type="primary">新增管理员</Button>
+                    &nbsp;&nbsp;&nbsp;
+                    <Button type="primary" onClick={() => this.toggleLazyLoad()}>同步管理员</Button>
+                    <MyDrawer ref={this.oMyDrawer} title={this.state.admin.name}>
+                    </MyDrawer>
+                </LazyLoad>
             </div>
         )
     }

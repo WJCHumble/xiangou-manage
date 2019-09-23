@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import {
     Form,
-    Icon,
+    Select,
     Input,
     Button,
-    Checkbox
 } from 'antd'
 import './index.less'
+
+const { Option } = Select
 
 class MForm extends Component {
 
@@ -17,47 +18,66 @@ class MForm extends Component {
                 console.log('Received values of form: ', values);
             }
         });
-    }
+    };
+
+    handleSelectChange = value => {
+        console.log(value);
+        this.props.form.setFieldsValue({
+            note: `Hi, ${value === 'male' ? 'man' : 'lady'}!`,
+        });
+    };
 
     render () {
         const { getFieldDecorator } = this.props.form
 
         return (
             <div>
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <Form.Item>
-                        {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
-                        })(
-                            <Input
-                                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Username"
-                            />,
-                        )}
+                <Form labelCol={{ span: 6 }} wrapperCol={{ span: 14, offset: 1 }} onSubmit={this.handleSubmit}>
+                    <Form.Item label="管理员编号：">
+                        {getFieldDecorator('note', {
+                            initialValue: 111
+                        })(<Input disabled={true}/>)}
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item label="账号：">
+                        {getFieldDecorator('account', {
+                            initialValue: 201652275133 
+                        })(<Input/>)}
+                    </Form.Item>
+                    <Form.Item label="密码：">
                         {getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
+                            initialValue: 666666 
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item label="姓名：">
+                        {getFieldDecorator('username', {
+                            initialValue: '吴敬昌'
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item label="手机号：">
+                        {getFieldDecorator('phone', {
+                            initialValue: '18157361620'
+                        })(<Input />)}
+                    </Form.Item>
+                    <Form.Item label="角色：">
+                        {getFieldDecorator('role', {
+                            initialValue: 'ordinaryManager'
                         })(
-                            <Input
-                                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                type="password"
-                                placeholder="Password"
-                            />,
+                            <Select defaultValue="ordinaryManager" style={{ width: 206 }} onChange={this.handleSelectChange} disabled={true}>
+                                <Option value="superManager">超级管理员</Option>
+                                <Option value="shareManager">分享管理员</Option>
+                                <Option value="ordinaryManager">普通管理员</Option>
+                            </Select>,
                         )}
                     </Form.Item>
-                    <Form.Item>
-                        {getFieldDecorator('remember', {
-                            valuePropName: 'checked',
-                            initialValue: true,
-                        })(<Checkbox>Remember me</Checkbox>)}
-                        <a className="login-form-forgot" href="">
-                            Forgot password
-                            </a>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
+                    <br/>
+                    <Form.Item wrapperCol={{ span: 12, offset: 7 }}>
+                        <Button type="primary" htmlType="submit">
+                            确定
                         </Button>
-                        Or <a href="">register now!</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <Button htmlType="reset">
+                            取消
+                        </Button>
                     </Form.Item>
                 </Form>
             </div>
