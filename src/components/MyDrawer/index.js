@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import MyForm from '../MyForm'
 import {
-    Drawer,
-    Avatar
+    Drawer
 } from 'antd'
 import './index.less'
 

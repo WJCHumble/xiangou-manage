@@ -6,9 +6,7 @@ import MyForm from '../../components/MyForm'
 import { exitConfirm } from '../../utils/common'
 import { 
   Layout, 
-  Avatar,
-  Drawer,
-  Modal
+  Avatar
 } from 'antd'
 import './index.less'
 
@@ -25,6 +23,10 @@ export default class PrimaryLayout extends Component {
         visible: false
       }
       this.oMyDrawer = createRef()
+    }
+
+    componentWillMount () {
+      
     }
 
     showDrawer = () => {
