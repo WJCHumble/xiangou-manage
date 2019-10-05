@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
+import store from '../../redux'
 import cookie from 'react-cookies'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
@@ -14,26 +15,33 @@ import './index.less'
 
 const { Header, Footer} = Layout
 
-
-
 class PrimaryLayout extends Component {
 
     constructor () {
       super()
 
       this.state = {
-        visible: false
+        visible: false,
+        userInfo: {
+        }
       }
       this.oMyDrawer = createRef()
     }
 
-    componentWillMount () {
-      // 获取cookie 判断是否存在用户
-      // const username = cookie.load('username')
-      // if (!username) {
-      //   this.props.history.replace('/login')
-      // }
-      // console.log(111)
+    componentWillUpdate() {
+      let userInfo = {}
+      let { userLogin } = store.getState()
+      if (userLogin.userInfo) {
+        userInfo = userLogin.userInfo        
+      }else if(cookie.load('userInfo')){
+        userInfo = cookie.load('userInfo')
+      }
+
+      if (!this.state.userInfo.username) {
+        this.setState({
+          userInfo
+        })
+      }
     }
 
     showDrawer = () => {
@@ -41,12 +49,14 @@ class PrimaryLayout extends Component {
     }
 
     render() {
-      const username = cookie.load('username')
-      if (!username) {
+      const userInfo = cookie.load('userInfo')
+      if (!userInfo) {
         return (
           <Redirect to="/login"/>
         )
       }
+
+      
       
       return (
         <div>
@@ -58,7 +68,8 @@ class PrimaryLayout extends Component {
               <Header style={{ background: '#fff', padding: 0 }}>
                 <div className="avatar-area">
                     <Avatar src='https://img-blog.csdnimg.cn/20190913132853727.jpg'/>
-                    <span onClick={ this.showDrawer } className="user-name">WJCHumble</span>|
+                  <span onClick={this.showDrawer} className="user-name">{this.state.userInfo.username ? this.state.userInfo.username : 'WJCHumble'}</span>
+                    |
                     <span className="exit" onClick={() => exitConfirm()}>退出</span>
                 </div>
               </Header>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../redux/actions'
 import { withRouter, Redirect, Route } from 'react-router-dom'
-import PrimaryLayout from '../primarylayout'
 import LoginForm  from '../../components/LoginForm'
 import cookie from 'react-cookies'
 import './index.less'
@@ -10,8 +9,8 @@ import './index.less'
 class Login extends Component {
 
     render () {
-        const username = cookie.load('username')
-        if (username) {
+        const userInfo = cookie.load('userInfo')
+        if (userInfo) {
             return (
                 <Redirect to="/usermanage/admin" />
             )

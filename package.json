@@ -2,13 +2,7 @@
   "name": "manage",
   "version": "0.1.0",
   "private": true,
-  "keywords": [
-    "react",
-    "redux",
-    "javascript"
-  ],
   "dependencies": {
-    "actions": "^1.3.0",
     "antd": "^3.23.2",
     "babel-plugin-import": "^1.12.1",
     "customize-cra": "^0.6.1",

@@ -23,6 +23,7 @@ class LoginForm_ extends Component {
                 this.props.userLogin({username: values.username, password: values.password})
                 // 解构获取用户登录信息
                 let { userLogin: { userInfo } } = store.getState()
+                // console.log(store.getState())
                 /**
                  * 存入cookie
                  *  */ 
@@ -30,8 +31,8 @@ class LoginForm_ extends Component {
                 const expires = new Date() 
                 expires.setTime(expires.getTime + 30*60*1000)
                 cookie.save(
-                    'username',
-                    userInfo.username,
+                    'userInfo',
+                    userInfo,
                     {
                         path: '/',
                         expires
@@ -39,7 +40,6 @@ class LoginForm_ extends Component {
                 )
                 // 登录跳转
                 this.props.history.replace('/usermanage/admin')
-                console.log('success')
             }
         })
     }

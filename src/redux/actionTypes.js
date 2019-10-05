@@ -1,5 +1,5 @@
-const USER_LOGIN = 'user_login'
+const USER_LOGIN = 'USER_LOGIN'
 
 export default {
-    USER_LOGIN   //用户登录
+    USER_LOGIN
 }
