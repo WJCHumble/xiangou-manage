@@ -75,8 +75,7 @@ class SideBar extends Component {
             defaultSelectedKeys: defaultSelectedKeys
         }))
         
-        // history.push(defaultSelectedKeys[0])
-        this.props.history.push(defaultSelectedKeys[0])
+        this.props.history.push(defaultSelectedKeys[0]) 
     }
 
     onCollapse = collapsed => {

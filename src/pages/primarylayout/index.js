@@ -1,4 +1,6 @@
 import React, { Component, createRef } from 'react'
+import { withRouter, Redirect } from 'react-router-dom'
+import cookie from 'react-cookies'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
 import MyDrawer from '../../components/MyDrawer'
@@ -14,7 +16,7 @@ const { Header, Footer} = Layout
 
 
 
-export default class PrimaryLayout extends Component {
+class PrimaryLayout extends Component {
 
     constructor () {
       super()
@@ -26,7 +28,12 @@ export default class PrimaryLayout extends Component {
     }
 
     componentWillMount () {
-      
+      // 获取cookie 判断是否存在用户
+      // const username = cookie.load('username')
+      // if (!username) {
+      //   this.props.history.replace('/login')
+      // }
+      // console.log(111)
     }
 
     showDrawer = () => {
@@ -34,6 +41,13 @@ export default class PrimaryLayout extends Component {
     }
 
     render() {
+      const username = cookie.load('username')
+      if (!username) {
+        return (
+          <Redirect to="/login"/>
+        )
+      }
+      
       return (
         <div>
           <Layout style={{ minHeight: '100vh' }}>
@@ -59,9 +73,11 @@ export default class PrimaryLayout extends Component {
             {/* <div className="avatar"> */}
             <Avatar size={64} src="https://img-blog.csdnimg.cn/20190913132853727.jpg" />
             {/* </div> */}
-            <MyForm /> 
+            <MyForm />
           </MyDrawer> 
         </div>
       );
     }
 }
+
+export default withRouter(PrimaryLayout)

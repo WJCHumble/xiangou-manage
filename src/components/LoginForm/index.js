@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import {
     Form, 
     Icon, 
@@ -6,14 +7,39 @@ import {
     Button, 
     Checkbox
 } from 'antd'
+import store from '../../redux'
+import cookie from 'react-cookies'
 
 class LoginForm_ extends Component {
+    constructor(props) {
+        super(props)
+    }
 
     handleSubmit = e => {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values)
+                // 触发用户登录action  
+                this.props.userLogin({username: values.username, password: values.password})
+                // 解构获取用户登录信息
+                let { userLogin: { userInfo } } = store.getState()
+                /**
+                 * 存入cookie
+                 *  */ 
+                // 设置cookie失效时间为30分钟
+                const expires = new Date() 
+                expires.setTime(expires.getTime + 30*60*1000)
+                cookie.save(
+                    'username',
+                    userInfo.username,
+                    {
+                        path: '/',
+                        expires
+                    }
+                )
+                // 登录跳转
+                this.props.history.replace('/usermanage/admin')
+                console.log('success')
             }
         })
     }
@@ -44,21 +70,6 @@ class LoginForm_ extends Component {
                         />,
                     )}
                 </Form.Item>
-                {/* <Form.Item label="验证码">
-                    {getFieldDecorator('username', {
-                        rules: [{ message: 'Please input your username!' }],
-                    })(
-                        <Input
-                            className="verify_code"
-                            placeholder="请输入验证码"
-                        />,
-                    )}
-                    <span>
-                        <Button type="primary" className="verify_code_button">
-                            点击刷新验证码
-                        </Button>
-                    </span>
-                </Form.Item> */}
                 <Form.Item>
                     {getFieldDecorator('remember', {
                         valuePropName: 'checked',
@@ -75,4 +86,5 @@ class LoginForm_ extends Component {
 }
 
 const LoginForm = Form.create({ name: 'login_form' })(LoginForm_)
-export default LoginForm
+
+export default withRouter(LoginForm) 
