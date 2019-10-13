@@ -28,7 +28,7 @@ class PrimaryLayout extends Component {
       this.oMyDrawer = createRef()
     }
 
-    componentWillUpdate() {
+    componentDidUpdate() {
       let userInfo = {}
       let { userLogin } = store.getState()
       if (userLogin.userInfo) {
@@ -38,9 +38,9 @@ class PrimaryLayout extends Component {
       }
 
       if (!this.state.userInfo.username) {
-        this.setState({
-          userInfo
-        })
+        // this.setState({
+        //   userInfo
+        // })
       }
     }
 

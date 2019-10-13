@@ -35,7 +35,7 @@ export default class Admin extends Component {
 
     //显示隐藏抽屉
     toggleDrawer = record => {
-        // console.log(record)
+        console.log(record)
         this.setState({
             admin: record
         })
@@ -48,6 +48,18 @@ export default class Admin extends Component {
         setTimeout(() => {
             this.oLazyLoad.current.toggleSpinning()
         }, 2000)
+    }
+
+    // 修改标签状态
+    toggelTagStatus = (e) => {
+        // 之后对接数据在修改此时页面的同时地发请求修改数据库中的数据
+        if (e.target.innerHTML === '正常') {
+            e.target.innerHTML = '禁用'
+            e.target.className = 'ant-tag ant-tag-red'
+        } else {
+            e.target.innerHTML = '正常'
+            e.target.className = 'ant-tag ant-tag-green'
+        }
     }
 
     render () {
@@ -89,7 +101,7 @@ export default class Admin extends Component {
                             }
                             return (
                             <span>
-                                <Tag color={color}>
+                                <Tag color={color} onClick={(e) => this.toggelTagStatus(e)}>
                                     {tag}
                                 </Tag>
                             </span>
