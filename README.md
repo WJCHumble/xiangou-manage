@@ -61,6 +61,9 @@
 
     <Button onClick={() => this.eventAction(param)}></Button>
 
+#### createActions使用
+
+
 ## 问题汇总
 
 ### history的push方法路由变化，页面不会变化  暂时用Link标签

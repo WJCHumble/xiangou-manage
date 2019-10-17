@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react'
 import MyDrawer from '../../../components/MyDrawer'
 import showDeleteConfirm from '../../../utils/common'
 import LazyLoad from '../../../components/LazyLoad'
+import AdminForm from '../../../components/AdminForm'
 import {
     Table, 
     Divider, 
@@ -28,12 +29,12 @@ export default class Admin extends Component {
         }
     }
     
-    // 定义列
+    //
     handleChange = value => {
         console.log(`selected ${value}`)
     }
 
-    //显示隐藏抽屉
+    // 显示隐藏抽屉
     toggleDrawer = record => {
         console.log(record)
         this.setState({
@@ -42,7 +43,7 @@ export default class Admin extends Component {
         this.oMyDrawer.current.showDrawer()
     }
 
-    //显示隐藏懒加载
+    // 显示隐藏懒加载
     toggleLazyLoad = () => {
         this.oLazyLoad.current.toggleSpinning()
         setTimeout(() => {
@@ -72,13 +73,13 @@ export default class Admin extends Component {
             },
             {
                 title: '账号',
-                dataIndex: 'age',
-                key: 'age',
+                dataIndex: 'account',
+                key: 'account',
             },
             {
                 title: '密码',
-                dataIndex: 'address',
-                key: 'address',
+                dataIndex: 'password',
+                key: 'password',
             },
             {
                 title: '角色',
@@ -126,8 +127,8 @@ export default class Admin extends Component {
             {
                 key: '1',
                 name: 'John Brown',
-                age: 32,
-                address: '111111',
+                account: 32,
+                password: '111111',
                 role: '分享管理员',
                 lastLoginTime: '1111',
                 tag: '正常',
@@ -135,8 +136,8 @@ export default class Admin extends Component {
             {
                 key: '2',
                 name: 'Jim Green',
-                age: 42,
-                address: 'London No. 1 Lake Park',
+                account: 42,
+                password: 'London No. 1 Lake Park',
                 role: '分享管理员',
                 lastLoginTime: '1111',
                 tag: '正常',
@@ -144,8 +145,8 @@ export default class Admin extends Component {
             {
                 key: '3',
                 name: 'Joe Black',
-                age: 32,
-                address: 'Sidney No. 1 Lake Park',
+                account: 32,
+                password: 'Sidney No. 1 Lake Park',
                 role: '超级管理员',
                 lastLoginTime: '1111',
                 tag: '禁用',
@@ -153,8 +154,8 @@ export default class Admin extends Component {
             {
                 key: '4',
                 name: 'Tom',
-                age: 50,
-                address: 'Amazing life',
+                account: 50,
+                password: 'Amazing life',
                 role: '超级管理员',
                 lastLoginTime: '1111',
                 tag: '禁用',
@@ -193,6 +194,7 @@ export default class Admin extends Component {
                     &nbsp;&nbsp;&nbsp;
                     <Button type="primary" onClick={() => this.toggleLazyLoad()}>同步管理员</Button>
                     <MyDrawer ref={this.oMyDrawer} title={this.state.admin.name}>
+                        <AdminForm adminInfo={this.state.admin}/>
                     </MyDrawer>
                 </LazyLoad>
             </div>

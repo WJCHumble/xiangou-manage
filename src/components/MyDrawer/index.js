@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MyForm from '../MyForm'
+import MyForm from '../UserForm'
 import {
     Drawer
 } from 'antd'

@@ -5,7 +5,7 @@ import cookie from 'react-cookies'
 import SideBar from './sidebar'
 import RightContent from './rightcontent'
 import MyDrawer from '../../components/MyDrawer'
-import MyForm from '../../components/MyForm'
+import UserForm from '../../components/UserForm'
 import { exitConfirm } from '../../utils/common'
 import { 
   Layout, 
@@ -55,8 +55,6 @@ class PrimaryLayout extends Component {
           <Redirect to="/login"/>
         )
       }
-
-      
       
       return (
         <div>
@@ -84,7 +82,7 @@ class PrimaryLayout extends Component {
             {/* <div className="avatar"> */}
             <Avatar size={64} src="https://img-blog.csdnimg.cn/20190913132853727.jpg" />
             {/* </div> */}
-            <MyForm />
+            <UserForm />
           </MyDrawer> 
         </div>
       );

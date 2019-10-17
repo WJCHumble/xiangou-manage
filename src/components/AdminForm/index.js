@@ -10,7 +10,7 @@ import './index.less'
 
 const { Option } = Select
 
-class MForm extends Component {
+class AForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
@@ -28,30 +28,31 @@ class MForm extends Component {
         // });
     };
 
-    render () {
+    render() {
         const { getFieldDecorator } = this.props.form
+        let { adminInfo } = this.props
 
         return (
             <div>
                 <Form labelCol={{ span: 6 }} wrapperCol={{ span: 14, offset: 1 }} onSubmit={this.handleSubmit}>
                     <Form.Item label="管理员编号：">
                         {getFieldDecorator('note', {
-                            initialValue: 111
-                        })(<Input disabled={true}/>)}
+                            initialValue: adminInfo.key
+                        })(<Input disabled={true} />)}
                     </Form.Item>
                     <Form.Item label="账号：">
                         {getFieldDecorator('account', {
-                            initialValue: 20112378617 
-                        })(<Input/>)}
+                            initialValue: adminInfo.account
+                        })(<Input />)}
                     </Form.Item>
                     <Form.Item label="密码：">
                         {getFieldDecorator('password', {
-                            initialValue: 666666 
+                            initialValue: adminInfo.password
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item label="姓名：">
                         {getFieldDecorator('username', {
-                            initialValue: '吴敬昌'
+                            initialValue: adminInfo.name
                         })(<Input />)}
                     </Form.Item>
                     <Form.Item label="手机号：">
@@ -61,16 +62,16 @@ class MForm extends Component {
                     </Form.Item>
                     <Form.Item label="角色：">
                         {getFieldDecorator('role', {
-                            initialValue: 'ordinaryManager'
+                            initialValue: adminInfo.role
                         })(
-                            <Select defaultValue="ordinaryManager" style={{ width: 206 }} onChange={this.handleSelectChange} disabled={true}>
+                            <Select style={{ width: 206 }} onChange={this.handleSelectChange} disabled={true}>
                                 <Option value="superManager">超级管理员</Option>
                                 <Option value="shareManager">分享管理员</Option>
                                 <Option value="ordinaryManager">普通管理员</Option>
                             </Select>,
                         )}
                     </Form.Item>
-                    <br/>
+                    <br />
                     <Form.Item wrapperCol={{ span: 12, offset: 7 }}>
                         <Button type="primary" htmlType="submit">
                             确定
@@ -86,5 +87,5 @@ class MForm extends Component {
     }
 }
 
-const MyForm = Form.create({ name: 'My_Form' })(MForm)
-export default MyForm
+const AdminForm = Form.create({ name: 'Admin_Form' })(AForm)
+export default AdminForm
