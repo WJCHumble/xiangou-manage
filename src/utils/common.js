@@ -7,7 +7,7 @@ import {
  */
  const { confirm } = Modal
 
- export default function showDeleteConfirm() {
+ export function showDeleteConfirm() {
     confirm({
         title: '您确定要删除这条记录吗?',
         // content: 'Some descriptions',

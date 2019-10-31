@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react'
 import MyDrawer from '../../../components/MyDrawer'
-import showDeleteConfirm from '../../../utils/common'
+import { showDeleteConfirm } from '../../../utils/common'
 import LazyLoad from '../../../components/LazyLoad'
 import AdminForm from '../../../components/AdminForm'
 import {

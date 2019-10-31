@@ -63,6 +63,37 @@
 
 #### createActions使用
 
+#### 代理配置
+
+    安装依赖
+        npm install --save http-proxy-middleware
+    在src/目录下新建setupProxy.js
+        const proxy = require('http-proxy-middleware')
+
+        module.exports = function(app) {
+            app.use(
+                '/api',
+                proxy({
+                    target: 'http://localhost:3000',
+                    changeOrigin: true
+                })
+            )
+        }
+
+#### 接口mock
+
+    安装依赖
+        npm install --save express
+    新建mock文件夹，新建server.js
+        const express = require('express')
+
+        const app = express()
+        app.get('/', (req, res) => {
+            res.send('hello world')
+        })
+        
+        app.listen(3000)
+    PS:说实话还是Vue mock数据简单，这个mock数据还得创一个服务器给Node...
 
 ## 问题汇总
 
